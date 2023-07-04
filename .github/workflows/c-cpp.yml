@@ -33,11 +33,10 @@ jobs:
         zip -r ${{ env.DEPLOY_PACKAGE_NAME }} ./ -i *graph*
         
     - name: Deploy to Server
-      run: cd build/ 
       uses: easingthemes/ssh-deploy@main
       env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-          SOURCE: "${{ env.DEPLOY_PACKAGE_NAME }}"
+          SOURCE: "~/build/${{ env.DEPLOY_PACKAGE_NAME }}"
           REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
           REMOTE_USER: ${{ secrets.REMOTE_USER }}
           TARGET: ${{ secrets.REMOTE_TARGET }}
