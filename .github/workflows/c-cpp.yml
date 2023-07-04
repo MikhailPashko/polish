@@ -31,11 +31,9 @@ jobs:
       run: |
         cd build/
         zip -r ${{ env.DEPLOY_PACKAGE_NAME }} ./ -i *graph*
-        ls -la
         
-    - run: ls -la  
-    
     - name: Deploy to Server
+      run: cd build/ 
       uses: easingthemes/ssh-deploy@main
       env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
