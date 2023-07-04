@@ -23,8 +23,8 @@ jobs:
       
     - name: move to src
       run: |
-      cd src
-      ls -la
+        cd src
+        ls -la
       
     - name: List curent folder
       run: ls -la
