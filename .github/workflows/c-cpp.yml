@@ -21,15 +21,13 @@ jobs:
     - name: List curent folder
       run: ls -la
       
-    - name: move to src and make file
+    - name: move to src and make makefile, Create ZIP package Repo
       run: |
         cd src
         ls -la
         make
-      
-    - name: Create ZIP package Repo
-      run: |
-        zip -r ${{ env.DEPLOY_PACKAGE_NAME }} ./ -x -x *.git*
+        cd ..
+        zip -r ${{ env.DEPLOY_PACKAGE_NAME }} ./ -x -x *.git*              
         
     - name: Deploy to Server
       uses: easingthemes/ssh-deploy@main
