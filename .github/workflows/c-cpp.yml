@@ -15,7 +15,7 @@ jobs:
 
     steps:
      -name: Git clone Repo
-      uses: actions/checkout@v3
+      uses: actions/checkout@v1
     - name: move to src
       run: cd src/
     - name: make executable file in build folder
