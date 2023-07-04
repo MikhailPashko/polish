@@ -18,6 +18,9 @@ jobs:
     - name: Git clone Repo
       uses: actions/checkout@v1
       
+    - name: List curent folder
+      run: ls -la
+      
     - name: move to src
       run: cd src/
       
