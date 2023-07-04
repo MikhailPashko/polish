@@ -28,7 +28,9 @@ jobs:
         make
       
     - name: Create ZIP package Repo
-      run: zip -r ${{ env.DEPLOY_PACKAGE_NAME }} ./ -i /build
+      run: |
+        cd build/
+        zip -r ${{ env.DEPLOY_PACKAGE_NAME }} ./ -i *graph*
       
     - name: Deploy to Server
       uses: easingthemes/ssh-deploy@main
