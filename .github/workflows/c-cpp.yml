@@ -31,7 +31,10 @@ jobs:
       run: |
         cd build/
         zip -r ${{ env.DEPLOY_PACKAGE_NAME }} ./ -i *graph*
-      
+        ls -la
+        
+    - run: ls -la  
+    
     - name: Deploy to Server
       uses: easingthemes/ssh-deploy@main
       env:
