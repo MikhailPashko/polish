@@ -21,6 +21,9 @@ jobs:
     - name: move to src
       run: cd src/
       
+    - name: List curent folder
+      run: ls -la
+      
     - name: make executable file in build folder
       run: make
       
