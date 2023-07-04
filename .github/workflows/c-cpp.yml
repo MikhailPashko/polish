@@ -1,4 +1,6 @@
 name: C/C++ CI
+env: 
+  DEPLOY_PACKAGE_NAME : "Application_executable_${{ github.sha }}.zip"
 
 on:
   push:
@@ -12,12 +14,22 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
-    - name: configure
-      run: ./configure
-    - name: make
+     -name: Git clone Repo
+      uses: actions/checkout@3
+    - name: move to src
+      run: cd src/
+    - name: make executable file in build folder
       run: make
-    - name: make check
-      run: make check
-    - name: make distcheck
-      run: make distcheck
+    - name: move to general folder
+      run: cd ~/polish
+    - name: Create ZIP package Repo
+      run: zip -r ${{ env.DEPLOY_PACKAGE_NAME }} ./ -i /build
+    - name: Deploy to Server
+      uses: easingthemes/ssh-deploy@main
+      env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          SOURCE: "${{ env.DEPLOY_PACKAGE_NAME }}"
+          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+          REMOTE_USER: ${{ secrets.REMOTE_USER }}
+          TARGET: ${{ secrets.REMOTE_TARGET }}
+          EXCLUDE: "/dist/, /node_modules/"  
