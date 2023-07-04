@@ -21,19 +21,11 @@ jobs:
     - name: List curent folder
       run: ls -la
       
-    - name: move to src
+    - name: move to src and make file
       run: |
         cd src
         ls -la
-      
-    - name: List curent folder
-      run: ls -la
-      
-    - name: make executable file in build folder
-      run: make
-      
-    - name: move to general folder
-      run: cd ~/polish
+        make
       
     - name: Create ZIP package Repo
       run: zip -r ${{ env.DEPLOY_PACKAGE_NAME }} ./ -i /build
