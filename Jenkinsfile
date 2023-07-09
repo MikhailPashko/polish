@@ -58,12 +58,11 @@ pipeline {
                 '''
             }
         }
-        stage('Deploy') {
+        stage('Deploy To Server') {
+            agent { node { label 'ubuntu_master'} }
             steps {
-                sh '''
-                echo 'Start stage'
-                ls -la
-                echo 'End stage'
+                sh ''' 
+                scp $DEPLOY_PACKAGE_NAME.zip root@192.168.2.11:/home
                 '''
             }
         }
