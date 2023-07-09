@@ -54,11 +54,11 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                echo 'Start stage'
                 sh '''
+                echo 'Start stage'
                 ls -la
-                '''
                 echo 'End stage'
+                '''
             }
         }
     }    
