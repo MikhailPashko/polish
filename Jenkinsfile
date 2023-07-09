@@ -27,17 +27,29 @@ pipeline {
                 '''
             }
         }
-        stage('Formation general Report') {
+
+                stage('Make executable File') {
             agent { node { label 'ubuntu_master'} }
             steps {
                 sh '''
-                cat CPPLint.report CPPCheck.report > General.report
-                rm CPPLint.report CPPCheck.report
                 ls -la
+                cd src/
+                make > Make.report
                 '''
             }
         }
         
+        stage('Formation general Report') {
+            agent { node { label 'ubuntu_master'} }
+            steps {
+                sh '''
+                cat CPPLint.report CPPCheck.report Make.report > General.report
+                rm CPPLint.report CPPCheck.report Make.report
+                ls -la
+                '''
+            }
+        }
+
         stage('Deploy') {
             steps {
                 echo 'Start stage'
