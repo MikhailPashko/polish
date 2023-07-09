@@ -27,7 +27,7 @@ pipeline {
             }
         }
         stage('Make executable File') {
-            agent { node { label 'node1'} }
+            agent { node { label 'ubuntu_master'} }
             steps {
                 sh '''
                 cd /home/jenkins/workspace/Git-Pipeline-Pollish/src
