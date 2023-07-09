@@ -12,8 +12,7 @@ pipeline {
                   python --version
                 '''
             }
-        }
-  
+        } 
         stage('Test') {
             steps {
                 sh '''
@@ -28,9 +27,6 @@ pipeline {
                 '''
             }
         }
-    
-    
-    
         stage('Deploy') {
             steps {
                 echo 'Start stage'
