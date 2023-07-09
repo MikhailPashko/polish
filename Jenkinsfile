@@ -33,7 +33,7 @@ pipeline {
                 docker cp /home/jenkins/workspace/Git-Pipeline-Pollish 404a848c957b:/home/jenkins/workspace
                 docker exec -i 404a848c957b bash
                 cd /home/jenkins/workspace/Git-Pipeline-Pollish/src
-                make > Make.report
+                make > ../Make.report
                 exit
                 docker cp 404a848c957b:/home/jenkins/workspace/Git-Pipeline-Pollish  /home/jenkins/workspace/Git-Pipeline-Pollish 
                 '''
