@@ -27,7 +27,7 @@ pipeline {
             }
         }
         stage('Make executable File') {
-            agent { node { label 'ubuntu20'} }
+            agent { dicker { image 'gcc:latest'} }
             steps {
                 sh '''
                 ls -la
@@ -49,11 +49,7 @@ pipeline {
         stage('ZIP Executable file and General.Report') {
             agent { node { label 'ubuntu20'} }
             steps {
-                sh '''
-                cat CPPLint.report CPPCheck.report Make.report > General.report
-                rm CPPLint.report CPPCheck.report Make.report
-                ls -la
-                '''
+                sh 'ls -la'
             }
         }
         stage('Deploy') {
