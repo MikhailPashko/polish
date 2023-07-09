@@ -1,8 +1,6 @@
 pipeline {
     agent any
     environment {
-        PROJECT_NAME = "Vostok"
-        OWNER_NAME = "MIKHAIL PASHKO"
         DEPLOY_PACKAGE_NAME = "Application_executable_${GIT_COMMIT}.zip"
     }    
     stages {
