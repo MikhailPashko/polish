@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    agent { node { label 'ubuntu_master'}}
     stages {
         stage('Build') {
             steps {
@@ -17,7 +17,7 @@ pipeline {
             }
         }
         stage('Test cppcheck') {
-            agent { node { label 'ubuntu_master'} }
+            agent { node { label 'ubuntu20'} }
             steps {
                 sh '''
                 ls -la
@@ -29,7 +29,7 @@ pipeline {
         }
 
                 stage('Make executable File') {
-            agent { node { label 'ubuntu_master'} }
+            agent { node { label 'ubuntu20'} }
             steps {
                 sh '''
                 ls -la
@@ -40,7 +40,17 @@ pipeline {
         }
         
         stage('Formation general Report') {
-            agent { node { label 'ubuntu_master'} }
+            agent { node { label 'ubuntu20'} }
+            steps {
+                sh '''
+                cat CPPLint.report CPPCheck.report Make.report > General.report
+                rm CPPLint.report CPPCheck.report Make.report
+                ls -la
+                '''
+            }
+        }
+        stage('ZIP Executable file and General.Report') {
+            agent { node { label 'ubuntu20'} }
             steps {
                 sh '''
                 cat CPPLint.report CPPCheck.report Make.report > General.report
