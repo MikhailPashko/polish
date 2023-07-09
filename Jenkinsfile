@@ -62,7 +62,7 @@ pipeline {
             agent { node { label 'ubuntu_master'} }
             steps {
                 sh ''' 
-                scp $DEPLOY_PACKAGE_NAME.zip root@192.168.2.11:/home
+                scp $DEPLOY_PACKAGE_NAME root@192.168.2.11:/home
                 '''
             }
         }
