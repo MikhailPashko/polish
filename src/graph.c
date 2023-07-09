@@ -4,7 +4,7 @@
 #include "./polska_parcer.h"
 
 #define WIDTH 80
-#define HEIGHT 25
+#define HEIGHT 26
 #define void_sym 46
 #define sym 42
 #define Null 12
