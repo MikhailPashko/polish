@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        DEPLOY_PACKAGE_NAME = "Application_executable_${GIT_COMMIT}.zip"
+        DEPLOY_PACKAGE_NAME = "Application_executable_${GIT_COMMIT}_${BUILD_NUMBER}.zip"
     }    
     stages {
         stage('Build') {
