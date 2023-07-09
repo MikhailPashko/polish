@@ -12,6 +12,7 @@ pipeline {
                 '''
             }
         } 
+        
         stage('Test') {
             steps {
                 sh '''
@@ -26,6 +27,7 @@ pipeline {
                 '''
             }
         }
+        
         stage('Deploy') {
             steps {
                 echo 'Start stage'
