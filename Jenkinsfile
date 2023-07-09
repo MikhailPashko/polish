@@ -30,7 +30,7 @@ pipeline {
             agent { node { label 'ubuntu_master'} }
             steps {
                 sh '''
-                cd /home/jenkins/workspace/Git-Pipeline-Pollish/src
+                cd /src
                 make > ../Make.report
                 '''
             }
