@@ -36,7 +36,7 @@ pipeline {
                 make > ../Make.report
                 exit
                 docker cp 404a848c957b:/home/jenkins/workspace/Git-Pipeline-Pollish  /home/jenkins/workspace/Git-Pipeline-Pollish
-                rsync -rvz /home/jenkins/workspace/Git-Pipeline-Pollish root@192.168.2.4:/var/lib/jenkins/workspace/Git-Pipeline-Pollish
+                rsync -rvz /home/jenkins/workspace/Git-Pipeline-Pollish/ root@192.168.2.4:/var/lib/jenkins/workspace/Git-Pipeline-Pollish/
                 '''
             }
         }
