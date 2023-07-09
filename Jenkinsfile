@@ -1,5 +1,10 @@
 pipeline {
     agent any
+    environment {
+        PROJECT_NAME = "Vostok"
+        OWNER_NAME = "MIKHAIL PASHKO"
+        DEPLOY_PACKAGE_NAME = "Application_executable_$GIT_COMMIT_$BUILD_ID.zip"
+    }    
     stages {
         stage('Build') {
             steps {
@@ -45,10 +50,12 @@ pipeline {
                 '''
             }
         }
-        stage('ZIP Executable file and General.Report') {
+        stage('ZIP Executable file and General.Report and send to AppServer') {
             agent { node { label 'ubuntu_master'} }
             steps {
-                sh 'ls -la'
+                sh ''' 
+                zip -r $DEPLOY_PACKAGE_NAME ./ -i General.report build/graph
+                '''
             }
         }
         stage('Deploy') {
