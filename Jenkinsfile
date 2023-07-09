@@ -34,7 +34,7 @@ pipeline {
                 sh '''
                 ls -la
                 cd src/
-                make > Make.report
+                make > ../Make.report
                 '''
             }
         }
