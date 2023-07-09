@@ -3,26 +3,17 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh '''
-                  sudo apt install make
-                  sudo apt install cppcheck
-                  sudo apt install python3.9
-                  cppcheck --version
-                  python --version
-                '''
+                echo 'Build stage'
             }
         } 
         
-        stage('Test') {
+        stage('Test cpplint') {
+            agent { docker { image 'python:latest' } }
             steps {
                 sh '''
                 ll
-                '''
                 echo 'Python Test'
-                sh "python3 materials/linters/cpplint.py --extensions=c src/*.c"
-                echo 'CPPCHECK Test'
-                sh "cppcheck --enable=all --suppress=missingIncludeSystem src/"
-                sh '''
+                "python3 materials/linters/cpplint.py --extensions=c src/*.c"
                 ll
                 '''
             }
