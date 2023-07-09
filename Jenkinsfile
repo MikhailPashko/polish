@@ -33,6 +33,7 @@ pipeline {
                 ls -la
                 cd src/
                 make > ../Make.report
+                ls -la
                 '''
             }
         }
