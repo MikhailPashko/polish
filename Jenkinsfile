@@ -11,10 +11,10 @@ pipeline {
             agent { docker { image 'python:latest' } }
             steps {
                 sh '''
-                ll
+                ls -la
                 echo 'Python Test'
                 "python3 materials/linters/cpplint.py --extensions=c src/*.c"
-                ll
+                ls -la
                 '''
             }
         }
@@ -23,7 +23,7 @@ pipeline {
             steps {
                 echo 'Start stage'
                 sh '''
-                ll
+                ls -la
                 '''
                 echo 'End stage'
             }
