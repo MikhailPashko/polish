@@ -28,7 +28,7 @@ pipeline {
             }
         }
         stage('Formation general Report') {
-            agent { node { label 'ubuntu20'} }
+            agent { node { label 'ubuntu_master'} }
             steps {
                 sh '''
                 cat CPPLint.report CPPCheck.report > General.report
