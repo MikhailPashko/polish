@@ -30,20 +30,8 @@ pipeline {
             agent { node { label 'node1'} }
             steps {
                 sh '''
-                docker cp /home/jenkins/workspace/Git-Pipeline-Pollish 404a848c957b:/home/jenkins/workspace
-                docker exec -i 404a848c957b bash
                 cd /home/jenkins/workspace/Git-Pipeline-Pollish/src
                 make > ../Make.report
-                exit 
-                '''
-            }
-        }
-        stage('Copy exe-file amd sync folder') {
-            agent { node { label 'node1'} }
-            steps {
-                sh '''
-                docker cp 404a848c957b:/home/jenkins/workspace/Git-Pipeline-Pollish/  /home/jenkins/workspace/
-                rsync -rvz /home/jenkins/workspace/Git-Pipeline-Pollish/ root@192.168.2.4:/var/lib/jenkins/workspace/Git-Pipeline-Pollish/
                 '''
             }
         }
