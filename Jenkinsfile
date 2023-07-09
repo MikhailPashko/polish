@@ -6,7 +6,6 @@ pipeline {
                 echo 'Build stage'
             }
         } 
-        
         stage('Test cpplint') {
             agent { docker { image 'python:latest' } }
             steps {
@@ -27,8 +26,7 @@ pipeline {
                 '''
             }
         }
-
-                stage('Make executable File') {
+        stage('Make executable File') {
             agent { node { label 'ubuntu20'} }
             steps {
                 sh '''
@@ -38,7 +36,6 @@ pipeline {
                 '''
             }
         }
-        
         stage('Formation general Report') {
             agent { node { label 'ubuntu20'} }
             steps {
@@ -59,7 +56,6 @@ pipeline {
                 '''
             }
         }
-
         stage('Deploy') {
             steps {
                 echo 'Start stage'
