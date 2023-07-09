@@ -13,7 +13,7 @@ pipeline {
                 sh '''
                 ls -la
                 echo 'Python Test'
-                "python3 materials/linters/cpplint.py --extensions=c src/*.c"
+                python3 materials/linters/cpplint.py --extensions=c src/*.c
                 ls -la
                 '''
             }
