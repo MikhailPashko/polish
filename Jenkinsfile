@@ -32,6 +32,8 @@ pipeline {
             steps {
                 sh '''
                 cat CPPLint.report CPPCheck.report > General.report
+                rm CPPLint.report CPPCheck.report
+                ls -la
                 '''
             }
         }
