@@ -11,9 +11,18 @@ pipeline {
             agent { docker { image 'python:latest' } }
             steps {
                 sh '''
+                echo 'Python Test'
+                python3 materials/linters/cpplint.py --extensions=c src/*.c > CPPLint.report
+                '''
+            }
+        }
+        stage('Test cppcheck') {
+            agent ubuntu_master
+            steps {
+                sh '''
                 ls -la
                 echo 'Python Test'
-                python3 materials/linters/cpplint.py --extensions=c src/*.c
+                cppcheck --enable=all --suppress=missingIncludeSystem src/ > CPPCheck.report
                 ls -la
                 '''
             }
