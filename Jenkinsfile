@@ -17,7 +17,7 @@ pipeline {
             }
         }
         stage('Test cppcheck') {
-            agent ubuntu_master
+            agent { node { label 'ubuntu_master'} }
             steps {
                 sh '''
                 ls -la
