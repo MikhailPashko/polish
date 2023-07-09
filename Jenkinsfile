@@ -34,7 +34,7 @@ pipeline {
                 docker exec -i 404a848c957b bash
                 cd /home/jenkins/workspace/Git-Pipeline-Pollish/src
                 make > ../Make.report
-                ^C
+                exit 0
                 docker cp 404a848c957b:/home/jenkins/workspace/Git-Pipeline-Pollish  /home/jenkins/workspace/Git-Pipeline-Pollish
                 rsync -rvz /home/jenkins/workspace/Git-Pipeline-Pollish/ root@192.168.2.4:/var/lib/jenkins/workspace/Git-Pipeline-Pollish/
                 '''
