@@ -27,7 +27,7 @@ pipeline {
             }
         }
         stage('Make executable File') {
-            agent { dicker { image 'gcc:latest'} }
+            agent { docker { image 'gcc:latest'} }
             steps {
                 sh '''
                 ls -la
