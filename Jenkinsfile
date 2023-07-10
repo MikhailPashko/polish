@@ -67,7 +67,7 @@ pipeline {
     } 
         post {
         always{
-                archiveArtifacts artifacts: '*.csv', onlyIfSuccessful: true
+                archiveArtifacts artifacts: '*.report', onlyIfSuccessful: true
                 
                 emailext to: "michaelpipinn@gmail.com",
                 subject: "jenkins build:${currentBuild.currentResult}: ${env.JOB_NAME}",
