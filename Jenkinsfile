@@ -67,12 +67,12 @@ pipeline {
     } 
             post {
             always{
-                archiveArtifacts artifacts: '$DEPLOY_PACKAGE_NAME', onlyIfSuccessful: true
+                archiveArtifacts artifacts: '${ DEPLOY_PACKAGE_NAME}', onlyIfSuccessful: true
                 
                 emailext to: "michaelpipinn@gmail.com",
                 subject: "jenkins build:${currentBuild.currentResult}: ${env.JOB_NAME}",
                 body: "${currentBuild.currentResult}: Job ${env.JOB_NAME}\nMore Info can be found here: ${env.BUILD_URL}",
-                attachmentsPattern: '$DEPLOY_PACKAGE_NAME'
+                attachmentsPattern: '${ DEPLOY_PACKAGE_NAME}'
                 
             cleanWs()
             }
