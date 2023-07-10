@@ -46,6 +46,7 @@ pipeline {
                 rm CPPLint.report CPPCheck.report Make.report
                 ls -la
                 '''
+                archiveArtifacts artifacts: 'General.report', onlyIfSuccessful: true
             }
         }
         stage('ZIP Executable file and General.Report and send to AppServer') {
