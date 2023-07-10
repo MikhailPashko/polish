@@ -66,7 +66,7 @@ pipeline {
         }
     } 
             post {
-            always{ { node { label 'ubuntu_master'} }
+            always{ {
                 #archiveArtifacts artifacts: '*.zip', onlyIfSuccessful: true
                 
                 emailext to: "michaelpipinn@gmail.com",
