@@ -42,11 +42,11 @@ pipeline {
             agent { node { label 'ubuntu_master'} }
             steps {
                 sh '''
-                cat CPPLint.report CPPCheck.report Make.report > General.report
+                date > date.txt
+                cat date.txt CPPLint.report CPPCheck.report Make.report  > General.report
                 rm CPPLint.report CPPCheck.report Make.report
                 ls -la
                 '''
-                archiveArtifacts artifacts: '*.report', onlyIfSuccessful: true
             }
         }
         stage('ZIP Executable file and General.Report and send to AppServer') {
@@ -55,6 +55,7 @@ pipeline {
                 sh ''' 
                 zip -r $DEPLOY_PACKAGE_NAME ./ -i General.report build/graph
                 '''
+                archiveArtifacts artifacts: 'General.report', onlyIfSuccessful: true
             }
         }
         stage('Deploy To Server') {
@@ -73,7 +74,7 @@ pipeline {
                 subject: "jenkins build:${currentBuild.currentResult}: ${env.JOB_NAME}",
                 body: "${currentBuild.currentResult}: Job ${env.JOB_NAME}\nMore Info can be found here: ${env.BUILD_URL}",
                 attachLog: true,
-                attachmentsPattern:'*.report'
+                attachmentsPattern:'General.report'
             }
         }
 }
