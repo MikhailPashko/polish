@@ -67,12 +67,12 @@ pipeline {
     } 
             post {
             always{ { node { label 'ubuntu_master'} }
-                archiveArtifacts artifacts: '*.zip', onlyIfSuccessful: true
+                #archiveArtifacts artifacts: '*.zip', onlyIfSuccessful: true
                 
                 emailext to: "michaelpipinn@gmail.com",
                 subject: "jenkins build:${currentBuild.currentResult}: ${env.JOB_NAME}",
                 body: "${currentBuild.currentResult}: Job ${env.JOB_NAME}\nMore Info can be found here: ${env.BUILD_URL}",
-                attachmentsPattern: '*.zip'
+                #attachmentsPattern: '*.zip'
                 
             cleanWs()
             }
